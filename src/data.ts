@@ -44,6 +44,17 @@ export const PROJECTS = [
     image: "https://images.unsplash.com/photo-1608223652631-5079a4da9001?auto=format&fit=crop&q=80&w=800&h=400",
     github: "https://github.com/RetroPick",
     website: "https://retropick.xyz/"
+  },
+  {
+    id: "4",
+    title: "Base Wallet Gateway",
+    role: "Web3 Developer",
+    description: "Base Wallet Gateway is a lightweight, responsive mini-dApp built on the Base L2 network utilizing Coinbase OnchainKit and Wagmi. The platform allows instant onboarding and custom dashboard metrics for Web3 users, mapping address, balances, and ENS profile data seamlessly.",
+    contribution: "Configured and customized Coinbase OnchainKit components (Avatar, Name, Address, EthBalance) to create a premium client login interface. Integrated Wagmi v2 client hooks and optimized Base RPC provider configs to ensure instant asset tracking. Standardized identity dropdowns and verified production builds under React 19.",
+    tech: ["Base L2", "OnchainKit", "Wagmi", "React", "TypeScript"],
+    image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?auto=format&fit=crop&q=80&w=800&h=400",
+    github: "https://github.com/thebegithub/my-onchainkit-app",
+    website: "https://my-onchainkit-app.vercel.app/"
   }
 ];
 
@@ -144,9 +155,10 @@ export function OnchainWallet() {
         <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
           <Avatar />
           <Name />
-          <Address />
-          <EthAmount />
+          <Address className="text-slate-500" />
+          <EthBalance />
         </Identity>
+        <WalletDropdownDisconnect />
       </WalletDropdown>
     </Wallet>
   );
@@ -172,5 +184,14 @@ export const BLOG_POSTS = [
     readTime: "6 min read",
     excerpt: "Automated distribution workflows are the secret weapon of modern lean Web3 teams. Here is how we automated RetroPick content pipeline with zero monthly infrastructure cost.",
     image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: "3",
+    title: "Bootstrapping Wallet Onboarding on Base L2 using Coinbase OnchainKit",
+    category: "WEB3 DEVELOPMENT",
+    date: "July 10, 2026",
+    readTime: "5 min read",
+    excerpt: "Custom Web3 wallet configuration often introduces substantial boilerplate code and UI edge cases. Learn how we integrated Coinbase OnchainKit and Wagmi to resolve ENS names and track balances in under 5 minutes.",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f4ec8ce?q=80&w=800&auto=format&fit=crop"
   }
 ];

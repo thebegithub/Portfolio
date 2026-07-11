@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Moon, Sun, Github, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { motion } from 'motion/react';
-import { Wallet, ConnectWallet, WalletDropdown, WalletDropdownDisconnect } from '@coinbase/onchainkit/wallet';
-import { Address, Avatar, Name, Identity, EthBalance } from '@coinbase/onchainkit/identity';
+
 
 interface NavbarProps {
   isDark: boolean;
@@ -113,26 +112,7 @@ export function Navbar({ isDark, toggleTheme }: NavbarProps) {
         </div>
         <div className="w-px h-5 bg-slate-300 dark:bg-slate-700 hidden sm:block"></div>
         
-        {/* OnchainKit Wallet Connect */}
-        <div className="relative">
-          <Wallet>
-            <ConnectWallet className="px-4 py-1.5 text-[10px] font-mono tracking-widest font-semibold rounded-full border border-slate-200/50 dark:border-slate-800/50 bg-white/40 dark:bg-slate-950/40 hover:bg-white/60 dark:hover:bg-slate-900/40 text-slate-900 dark:text-white transition-colors duration-300">
-              <Avatar className="h-4 w-4 mr-2" />
-              <Name className="text-slate-900 dark:text-white" />
-            </ConnectWallet>
-            <WalletDropdown className="bg-white dark:bg-[#070e17] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-3">
-              <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
-                <Avatar />
-                <Name />
-                <Address className="text-slate-500" />
-                <EthBalance />
-              </Identity>
-              <WalletDropdownDisconnect />
-            </WalletDropdown>
-          </Wallet>
-        </div>
 
-        <div className="w-px h-5 bg-slate-300 dark:bg-slate-700 hidden sm:block"></div>
         <button
           onClick={toggleTheme}
           className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
