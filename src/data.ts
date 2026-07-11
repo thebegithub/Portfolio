@@ -124,6 +124,33 @@ async function callAI(messages, tools) {
     });
   }
 }`
+  },
+  {
+    id: "4",
+    title: "OnchainKit Wallet Connection",
+    category: "WEB3 L2",
+    desc: "Problem: Custom Web3 wallet UI flows require writing substantial boilerplate to track connection, network, and avatar states. Solution: Abstract connection logic via Coinbase OnchainKit, implementing a clean React connection gate. Key Takeaways: 1. Reduces UI state code footprint by 80%. 2. Integrates native ENS and balance queries at the client layer. 3. Fully compatible with Wagmi/Viem provider contexts on Base L2.",
+    code: `import { Wallet, ConnectWallet, WalletDropdown } from '@coinbase/onchainkit/wallet';
+import { Address, Avatar, Name, Identity, EthAmount } from '@coinbase/onchainkit/identity';
+
+export function OnchainWallet() {
+  return (
+    <Wallet>
+      <ConnectWallet className="bg-blue-600 hover:bg-blue-700 text-white rounded-full">
+        <Avatar className="h-6 w-6" />
+        <Name />
+      </ConnectWallet>
+      <WalletDropdown>
+        <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
+          <Avatar />
+          <Name />
+          <Address />
+          <EthAmount />
+        </Identity>
+      </WalletDropdown>
+    </Wallet>
+  );
+}`
   }
 ];
 
