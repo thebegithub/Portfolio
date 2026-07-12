@@ -122,7 +122,7 @@ export function Hero() {
           transition={{ delay: 0.3 }}
           className="flex flex-wrap gap-4"
         >
-          <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[color:var(--accent)] bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-[color:var(--accent)] font-medium text-sm hover:bg-[color:var(--accent)] hover:text-white transition-all duration-200">
+          <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-slate-300 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-[color:var(--accent)] font-medium text-sm hover:bg-[color:var(--accent)] hover:text-white transition-all duration-200">
             Explore Work <ArrowRight size={18} />
           </a>
           <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-slate-300 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
