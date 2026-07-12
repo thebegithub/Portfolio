@@ -13,3 +13,124 @@
 body {
   @apply antialiased;
 }
+
+:root {
+  --accent: #3B82F6;
+}
+
+/* Premium Section Divider with Solid Accent Fade */
+.section-divider {
+  position: relative;
+  border-top: none !important;
+}
+
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), rgba(59, 130, 246, 0.4), transparent);
+  pointer-events: none;
+}
+
+/* Premium Primary Button - Outline Style */
+.btn-primary-gradient {
+  background: transparent !important;
+  border: 1px solid var(--accent) !important;
+  color: var(--accent) !important;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: background-color 200ms ease-out, color 200ms ease-out, transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.btn-primary-gradient::before {
+  display: none !important;
+}
+
+.btn-primary-gradient:hover {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Active Category Filter Chip */
+.chip-active {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--accent) !important;
+  box-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.3);
+}
+
+/* Premium Category Badge with Solid Border and Text */
+.badge-gradient-border {
+  position: relative;
+  border: 1px solid var(--accent) !important;
+  background: transparent !important;
+  color: var(--accent) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.1em !important;
+}
+
+.badge-gradient-border::before {
+  display: none !important;
+}
+
+/* Premium Solid Hover Text */
+.hover-text-accent-gradient {
+  transition: color 200ms ease-out;
+}
+
+.group:hover .hover-text-accent-gradient {
+  color: var(--accent) !important;
+}
+
+/* Premium Card Hover Interaction */
+.card-premium-hover {
+  position: relative;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out;
+  will-change: transform, box-shadow;
+}
+
+.card-premium-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -10px rgba(59, 130, 246, 0.15);
+}
+
+/* Hero profile image glowing frame */
+.profile-glowing-frame {
+  position: relative;
+  border-radius: 2rem;
+}
+
+.profile-glowing-frame::before {
+  content: '';
+  position: absolute;
+  inset: -2px; /* 2px border space */
+  border-radius: calc(2rem + 2px);
+  padding: 2px;
+  background: var(--accent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.profile-glowing-frame::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: calc(2rem + 4px);
+  background: var(--accent);
+  filter: blur(12px);
+  opacity: 0.25; /* soft glow behind image */
+  pointer-events: none;
+  z-index: -1;
+}

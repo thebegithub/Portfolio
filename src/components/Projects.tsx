@@ -5,11 +5,24 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[number] | null>(null);
+  const [activeStatus, setActiveStatus] = useState('ALL');
+  const [activeCategory, setActiveCategory] = useState('ALL');
+
+  const statuses = ['ALL', 'SHIPPED', 'IN-PROGRESS', 'ARCHIVED'];
+
+  // Pull primary categories dynamically from project data (first tech tag)
+  const categories = ['ALL', ...Array.from(new Set(PROJECTS.map(p => p.tech[0].toUpperCase())))];
+
+  const filteredProjects = PROJECTS.filter(project => {
+    const matchesStatus = activeStatus === 'ALL' || (project.status && project.status.toUpperCase() === activeStatus);
+    const matchesCategory = activeCategory === 'ALL' || project.tech[0].toUpperCase() === activeCategory;
+    return matchesStatus && matchesCategory;
+  });
 
   return (
-    <section id="projects" className="py-24 border-t border-slate-200 dark:border-slate-800/50">
+    <section id="projects" className="pt-16 pb-24 section-divider">
       <div className="max-w-2xl mb-16">
-        <p className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-6 border border-slate-300 dark:border-slate-700 rounded-full px-3 py-1.5 inline-block">
+        <p className="text-[10px] font-mono tracking-[0.1em] text-slate-500 dark:text-slate-400 uppercase mb-6 border border-slate-300 dark:border-slate-700 rounded-full px-3 py-1.5 inline-block">
           PROJECTS & CASE STUDIES
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-[1.1] mb-6">
@@ -20,47 +33,102 @@ export function Projects() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-        {PROJECTS.map((project, i) => {
-          const isFeatured = i === 0;
-          return (
-            <button
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
-              className={`flex flex-col text-left p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/20 hover:bg-white/60 dark:hover:bg-slate-900/40 hover:border-blue-500/30 dark:hover:border-blue-500/20 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5 hover:-translate-y-2 hover:scale-[1.01] transition-all duration-300 ease-out backdrop-blur-sm group cursor-pointer w-full ${
-                isFeatured ? 'lg:col-span-2' : 'lg:col-span-1'
-              }`}
-            >
-              <div className="flex flex-col h-full w-full justify-between space-y-4">
-                <div>
-                  <div className="flex items-center justify-between mb-4 w-full">
-                    <span className="px-3 py-1 rounded-full border border-slate-300 dark:border-slate-700 text-[10px] font-mono tracking-wider text-slate-500 dark:text-slate-400 uppercase font-semibold">
-                      {project.tech[0]}
-                    </span>
-                    <p className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase">
-                      2026
-                    </p>
-                  </div>
-                  
-                  <h3 className="text-xl md:text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  
-                  <p className={`text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-4 ${
-                    isFeatured ? 'max-w-4xl' : 'line-clamp-3'
-                  }`}>
-                    {project.description}
-                  </p>
-                </div>
-                
-                <div className="flex items-center gap-1.5 mt-auto text-[11px] font-mono font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors uppercase tracking-wider">
-                  VIEW DETAILS <ArrowUpRight size={14} />
-                </div>
-              </div>
-            </button>
-          );
-        })}
+      {/* Dynamic Two-Row Filter System */}
+      <div className="flex flex-col gap-3 mb-12 w-full">
+        {/* Row 1: Status Filters */}
+        <div className="flex flex-wrap gap-2.5">
+          {statuses.map((status) => {
+            const isActive = status === activeStatus;
+            return (
+              <button
+                key={status}
+                onClick={() => setActiveStatus(status)}
+                className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? 'chip-active text-white shadow-lg'
+                    : 'bg-white/40 dark:bg-slate-900/20 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200/50 dark:border-slate-800/50'
+                }`}
+              >
+                {status}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Row 2: Category/Stack Filters */}
+        <div className="flex flex-wrap gap-2.5">
+          {categories.map((category) => {
+            const isActive = category === activeCategory;
+            return (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? 'chip-active text-white shadow-lg'
+                    : 'bg-white/40 dark:bg-slate-900/20 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200/50 dark:border-slate-800/50'
+                }`}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
       </div>
+
+      <motion.div 
+        layout
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full"
+      >
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project, i) => {
+            const isFeatured = activeCategory === 'ALL' && i === 0;
+            return (
+              <motion.div
+                layout
+                key={project.id}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                className={isFeatured ? 'lg:col-span-2' : 'lg:col-span-1'}
+              >
+                <button
+                  onClick={() => setSelectedProject(project)}
+                  className="flex flex-col text-left p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/20 hover:bg-white/60 dark:hover:bg-slate-900/40 backdrop-blur-sm group cursor-pointer w-full card-premium-hover overflow-hidden h-full"
+                >
+                  <div className="flex flex-col h-full w-full justify-between space-y-4">
+                    <div className="w-full">
+                      <div className="flex items-center justify-between mb-4 w-full">
+                        <span className="px-3.5 py-1.5 rounded-full badge-gradient-border text-[11px] font-mono tracking-wider uppercase font-bold">
+                          {project.tech[0]}
+                        </span>
+                        <p className="text-[10px] font-mono tracking-[0.1em] text-slate-500 dark:text-slate-400 uppercase">
+                          {project.status} • 2026
+                        </p>
+                      </div>
+                      
+                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                        {project.title}
+                      </h3>
+                      
+                      <p className={`text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-4 ${
+                        isFeatured ? 'max-w-4xl' : 'line-clamp-3'
+                      }`}>
+                        {project.description}
+                      </p>
+                    </div>
+                    
+                    <div className="flex items-center gap-1.5 mt-auto text-[11px] font-mono font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors uppercase tracking-wider">
+                      <span className="hover-text-accent-gradient">VIEW DETAILS</span> <ArrowUpRight size={14} />
+                    </div>
+                  </div>
+                </button>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </motion.div>
 
       {/* Modal Popup with AnimatePresence */}
       <AnimatePresence>
@@ -100,7 +168,7 @@ export function Projects() {
                     <span className="px-3 py-1 rounded-full border border-slate-300 dark:border-slate-700 text-[10px] font-mono tracking-wider text-slate-500 dark:text-slate-400 uppercase font-semibold">
                       {selectedProject.tech[0]}
                     </span>
-                    <span className="text-[10px] font-mono text-slate-400">2026 / FEATURED</span>
+                    <span className="text-[10px] font-mono text-slate-400 uppercase">{selectedProject.status} • 2026 / FEATURED</span>
                   </div>
 
                   {/* Title & Role */}
@@ -130,7 +198,7 @@ export function Projects() {
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.tech.map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-600 dark:text-slate-400 uppercase">
+                        <span key={tag} className="px-3.5 py-1.5 rounded-lg badge-gradient-border text-[13px] font-mono uppercase font-bold">
                           {tag}
                         </span>
                       ))}

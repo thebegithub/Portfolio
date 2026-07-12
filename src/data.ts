@@ -1,3 +1,7 @@
+import stablecoinDashboard from '../assets/stablecoin_dashboard.png';
+import workflowPipeline from '../assets/workflow_pipeline.png';
+import walletConnection from '../assets/wallet_connection.png';
+
 export const SKILLS = [
   "AI Agent Orchestration",
   "LLM API Integration",
@@ -18,10 +22,11 @@ export const PROJECTS = [
     role: "UI/UX & Frontend Developer",
     description: "GigPay Indonesia is a Web3-based freelance payment platform operating on the Base network using the IDRX stablecoin. The platform provides a transparent, secure, and efficient solution for sending and receiving freelance wages.",
     contribution: "Responsible for the visual interface design and frontend implementation of the platform. The main focus was building an educational home page to explain the application workflows clearly before accessing the system, while ensuring Web3 interactions are packaged within a clean, minimalist, and professional design.",
-    tech: ["Web3", "Base", "IDRX", "Frontend"],
+    tech: ["WEB3", "Base", "IDRX", "Frontend"],
     image: "https://images.unsplash.com/photo-1639762681485-074b7f4ec8ce?auto=format&fit=crop&q=80&w=800&h=400",
     github: "https://github.com/GigPay-Indonesia",
-    website: "https://gigpay1.vercel.app/"
+    website: "https://gigpay1.vercel.app/",
+    status: "SHIPPED"
   },
   {
     id: "2",
@@ -29,10 +34,11 @@ export const PROJECTS = [
     role: "Product Designer",
     description: "ArisanDAO is a system that digitalizes traditional Indonesian social gatherings (arisan) into a decentralized ecosystem using smart contracts and a DAO (Decentralized Autonomous Organization) structure.",
     contribution: "Held full responsibility for designing the entire user experience (UX) and visual user interface (UI) of the platform. The primary challenge solved was simplifying blockchain operational complexity and DAO governance into intuitive, familiar user flows that are easily understood by the general public.",
-    tech: ["Web3", "DAO", "Smart Contract", "UI/UX"],
+    tech: ["WEB3", "DAO", "Smart Contract", "UI/UX"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800&h=400",
     github: "https://github.com/thebegithub/ArisanDAO",
-    website: "https://arisan-dao.vercel.app/"
+    website: "https://arisan-dao.vercel.app/",
+    status: "SHIPPED"
   },
   {
     id: "3",
@@ -40,10 +46,11 @@ export const PROJECTS = [
     role: "Marketing Lead & Workflow Engineer",
     description: "RetroPick is a deterministic event contract market and risk terminal designed to transform real-world uncertainty into tradeable, oracle-resolved risk markets. Leveraging AI agent workflows and distributed knowledge aggregation, the platform filters raw news inputs into real-time market prices and direct probability signals for hedging, forecasting, and data-driven decision-making.",
     contribution: "Led the marketing engineering strategy by architecting the core RetroPick Signal Engine. Engineered an autonomous AI-driven agent pipeline that monitors live economic feeds, leverages LLMs to synthesize complex financial indicators into clean market insights, and automatically broadcasts formatted digests to social hubs (Telegram, Discord, Twitter). Standardized n8n workflow systems to translate raw information into high-signal growth hooks with zero manual intervention.",
-    tech: ["AI AGENT", "LLMs", "N8N", "AUTOMATION", "WEB3"],
+    tech: ["WEB3", "AI AGENT", "LLMs", "N8N", "AUTOMATION"],
     image: "https://images.unsplash.com/photo-1608223652631-5079a4da9001?auto=format&fit=crop&q=80&w=800&h=400",
     github: "https://github.com/RetroPick",
-    website: "https://retropick.xyz/"
+    website: "https://retropick.xyz/",
+    status: "IN-PROGRESS"
   }
 ];
 
@@ -163,7 +170,7 @@ export const BLOG_POSTS = [
     date: "July 08, 2026",
     readTime: "4 min read",
     excerpt: "With inflation-resistant local stablecoins and sub-penny gas fees on Layer-2 Base network, local creators can now receive direct payments instantly without double conversion fees.",
-    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop"
+    image: walletConnection
   },
   {
     id: "2",
@@ -172,7 +179,7 @@ export const BLOG_POSTS = [
     date: "June 25, 2026",
     readTime: "6 min read",
     excerpt: "Automated distribution workflows are the secret weapon of modern lean Web3 teams. Here is how we automated RetroPick content pipeline with zero monthly infrastructure cost.",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop"
+    image: workflowPipeline
   },
   {
     id: "3",
@@ -181,6 +188,6 @@ export const BLOG_POSTS = [
     date: "July 10, 2026",
     readTime: "5 min read",
     excerpt: "Custom Web3 wallet configuration often introduces substantial boilerplate code and UI edge cases. Learn how we integrated Coinbase OnchainKit and Wagmi to resolve ENS names and track balances in under 5 minutes.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f4ec8ce?q=80&w=800&auto=format&fit=crop"
+    image: stablecoinDashboard
   }
 ];

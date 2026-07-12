@@ -5,6 +5,7 @@ import { Projects } from './components/Projects';
 import { Notes } from './components/Notes';
 import { Blog } from './components/Blog';
 import { Contact } from './components/Contact';
+import { CommandPalette } from './components/CommandPalette';
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <div className={`relative min-h-screen font-sans selection:bg-blue-500/30 selection:text-blue-600 dark:selection:text-blue-200 transition-colors duration-500 bg-soft-blue dark:bg-[#050B14]`}>
+      <CommandPalette />
       
       {/* Background Image at the top level, covering Header & Hero area */}
       <div className="absolute top-0 left-0 right-0 h-[640px] md:h-[720px] z-0 overflow-hidden pointer-events-none">
@@ -43,11 +45,11 @@ export default function App() {
           <Contact />
         </main>
 
-        <footer className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-slate-800/50 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-500 uppercase">
+        <footer className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 section-divider py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[10px] font-mono tracking-[0.1em] text-slate-500 dark:text-slate-500 uppercase">
             BUILT WITH A PRODUCT-FIRST PORTFOLIO MINDSET.
           </p>
-          <p className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-500 uppercase">
+          <p className="text-[10px] font-mono tracking-[0.1em] text-slate-500 dark:text-slate-500 uppercase">
             © {new Date().getFullYear()} FATCURRAHMAN
           </p>
         </footer>

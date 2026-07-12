@@ -6,6 +6,9 @@ import { motion, AnimatePresence } from 'motion/react';
 export function Notes() {
   const [selectedNote, setSelectedNote] = useState<typeof NOTES[number] | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedNotes = showAll ? NOTES : NOTES.slice(0, 2);
 
   const handleCopy = (code: string, id: string) => {
     navigator.clipboard.writeText(code);
@@ -14,9 +17,9 @@ export function Notes() {
   };
 
   return (
-    <section id="notes" className="py-24 border-t border-slate-200 dark:border-slate-800/50">
+    <section id="notes" className="py-24 section-divider">
       <div className="max-w-2xl mb-16">
-        <p className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-6 border border-slate-300 dark:border-slate-700 rounded-full px-3 py-1.5 inline-block">
+        <p className="text-[10px] font-mono tracking-[0.1em] text-slate-500 dark:text-slate-400 uppercase mb-6 border border-slate-300 dark:border-slate-700 rounded-full px-3 py-1.5 inline-block">
           FIELD NOTES
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-[1.1] mb-6">
@@ -28,17 +31,17 @@ export function Notes() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {NOTES.map((note) => (
+        {displayedNotes.map((note) => (
           <button
             key={note.id}
             onClick={() => setSelectedNote(note)}
-            className="flex flex-col text-left p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/20 hover:bg-white/60 dark:hover:bg-slate-900/40 hover:border-blue-500/30 dark:hover:border-blue-500/20 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5 hover:-translate-y-2 hover:scale-[1.01] transition-all duration-300 ease-out backdrop-blur-sm group cursor-pointer w-full"
+            className="flex flex-col text-left p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/20 hover:bg-white/60 dark:hover:bg-slate-900/40 backdrop-blur-sm group cursor-pointer w-full card-premium-hover overflow-hidden"
           >
              <div className="flex items-center justify-between mb-4 w-full">
-              <span className="px-3 py-1 rounded-full border border-slate-300 dark:border-slate-700 text-[10px] font-mono tracking-wider text-slate-500 dark:text-slate-400 uppercase font-semibold">
+              <span className="px-3.5 py-1.5 rounded-full badge-gradient-border text-[11px] font-mono tracking-wider uppercase font-bold">
                 {note.category}
               </span>
-              <p className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase">
+              <p className="text-[10px] font-mono tracking-[0.1em] text-slate-500 dark:text-slate-400 uppercase">
                 FRAGMENT
               </p>
             </div>
@@ -50,12 +53,23 @@ export function Notes() {
               {note.desc}
             </p>
             
-            <div className="flex items-center gap-1.5 mt-auto text-[11px] font-mono font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors uppercase tracking-wider">
-              VIEW CODE SNIPPET <ArrowUpRight size={14} />
+            <div className="flex items-center gap-1.5 mt-auto text-[11px] font-mono font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors uppercase tracking-wider">
+              <span className="hover-text-accent-gradient">VIEW CODE SNIPPET</span> <ArrowUpRight size={14} />
             </div>
           </button>
         ))}
       </div>
+
+      {NOTES.length > 2 && (
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="px-6 py-3 rounded-full border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/20 hover:bg-white/60 dark:hover:bg-slate-900/40 text-slate-800 dark:text-slate-200 font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 backdrop-blur-sm cursor-pointer hover:border-blue-500/30 dark:hover:border-blue-500/20"
+          >
+            {showAll ? 'Show Less' : 'View All Notes'}
+          </button>
+        </div>
+      )}
 
       {/* Modal Popup with AnimatePresence */}
       <AnimatePresence>
@@ -90,10 +104,10 @@ export function Notes() {
               <div className="space-y-6">
                 {/* Header Tag */}
                 <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 rounded-full border border-slate-300 dark:border-slate-700 text-[10px] font-mono tracking-wider text-slate-500 dark:text-slate-400 uppercase font-semibold">
+                  <span className="px-3.5 py-1.5 rounded-full badge-gradient-border text-[11px] font-mono tracking-wider uppercase font-bold">
                     {selectedNote.category}
                   </span>
-                  <span className="text-[10px] font-mono text-slate-400">TECHNICAL NOTE</span>
+                  <span className="text-[10px] font-mono tracking-[0.1em] text-slate-400 uppercase">TECHNICAL NOTE</span>
                 </div>
 
                 {/* Title */}

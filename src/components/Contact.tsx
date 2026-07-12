@@ -2,11 +2,47 @@ import { ArrowRight, Github, Twitter, Linkedin, Mail, Instagram } from 'lucide-r
 import React from 'react';
 
 export function Contact() {
+  const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      _subject: formData.get('subject') || 'Collaboration Inquiry',
+      message: formData.get('message'),
+      _captcha: 'false'
+    };
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/fatcurrahman125@gmail.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      
+      if (response.ok) {
+        setStatus('success');
+        e.currentTarget.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      setStatus('error');
+    }
+  };
+
   return (
-    <section id="contact" className="py-24 border-t border-slate-200 dark:border-slate-800/50 mt-12 mb-12">
+    <section id="contact" className="py-24 section-divider mt-12 mb-12">
       <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
         <div className="flex-1">
-          <p className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase mb-6">
+          <p className="text-[10px] font-mono tracking-[0.2em] text-slate-500 dark:text-slate-400 uppercase mb-6">
             CONTACT / COLLABORATIONS
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-[1.1] mb-6 max-w-xl">
@@ -16,17 +52,53 @@ export function Contact() {
             Open to builder collaborations, technical product design, and growth-heavy roles that need both execution and strategy.
           </p>
 
-          <form className="space-y-4 max-w-lg">
+          <form onSubmit={handleSubmit} className="space-y-4 max-w-lg">
             <div className="flex flex-col sm:flex-row gap-4">
-              <input type="text" placeholder="Your name" className="w-full bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors placeholder:text-slate-400" />
-              <input type="email" placeholder="Email address" className="w-full bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors placeholder:text-slate-400" />
+              <input 
+                type="text" 
+                name="name"
+                required
+                placeholder="Your name" 
+                className="w-full bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors placeholder:text-slate-400" 
+              />
+              <input 
+                type="email" 
+                name="email"
+                required
+                placeholder="Email address" 
+                className="w-full bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors placeholder:text-slate-400" 
+              />
             </div>
-            <input type="text" placeholder="Subject" className="w-full bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors placeholder:text-slate-400" />
-            <textarea placeholder="Tell me what you're building, what you need, and the timeline..." rows={5} className="w-full bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 text-sm focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors resize-none placeholder:text-slate-400"></textarea>
+            <input 
+              type="text" 
+              name="subject"
+              required
+              placeholder="Subject" 
+              className="w-full bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors placeholder:text-slate-400" 
+            />
+            <textarea 
+              name="message"
+              required
+              placeholder="Tell me what you're building, what you need, and the timeline..." 
+              rows={5} 
+              className="w-full bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-4 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors resize-none placeholder:text-slate-400"
+            ></textarea>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
-              <p className="text-xs text-slate-500">Messages go directly to the configured inbox.</p>
-              <button type="button" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-medium text-sm hover:bg-slate-800 dark:hover:bg-white transition-colors w-full sm:w-auto">
-                SEND MESSAGE <ArrowRight size={16} />
+              <div className="flex flex-col gap-1">
+                <p className="text-xs text-slate-500">Messages go directly to the configured inbox.</p>
+                {status === 'success' && (
+                  <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">✓ Message sent! Please verify your inbox on the first submission.</p>
+                )}
+                {status === 'error' && (
+                  <p className="text-xs text-red-600 dark:text-red-400 font-medium">✗ Failed to send message. Please try again.</p>
+                )}
+              </div>
+              <button 
+                type="submit" 
+                disabled={status === 'loading'}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full btn-primary-gradient font-medium text-sm w-full sm:w-auto cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === 'loading' ? 'SENDING...' : 'SEND MESSAGE'} <ArrowRight size={16} />
               </button>
             </div>
           </form>
