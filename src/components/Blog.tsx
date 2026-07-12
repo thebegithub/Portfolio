@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export function Blog() {
   const [selectedPost, setSelectedPost] = useState<typeof BLOG_POSTS[number] | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedPosts = showAll ? BLOG_POSTS : BLOG_POSTS.slice(0, 2);
 
   return (
     <section id="blog" className="py-24 border-t border-slate-200 dark:border-slate-800/50">
@@ -21,7 +24,7 @@ export function Blog() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {BLOG_POSTS.map((post) => (
+        {displayedPosts.map((post) => (
           <button
             key={post.id}
             onClick={() => setSelectedPost(post)}
@@ -65,6 +68,17 @@ export function Blog() {
           </button>
         ))}
       </div>
+
+      {BLOG_POSTS.length > 2 && (
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="px-6 py-3 rounded-full border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/20 hover:bg-white/60 dark:hover:bg-slate-900/40 text-slate-800 dark:text-slate-200 font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 backdrop-blur-sm cursor-pointer hover:border-blue-500/30 dark:hover:border-blue-500/20"
+          >
+            {showAll ? 'Show Less' : 'View All Articles'}
+          </button>
+        </div>
+      )}
 
       {/* Modal Popup with AnimatePresence */}
       <AnimatePresence>
