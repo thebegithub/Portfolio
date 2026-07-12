@@ -119,7 +119,7 @@ export function Hero() {
           
           <div className="p-4 pt-2">
             <div className="flex flex-wrap gap-2">
-              {['GTM', 'Web3', 'AI', 'Frontend', 'UI/UX'].map(skill => (
+              {['GTM', 'Web3', 'AI', 'Growth', 'Frontend', 'UI/UX'].map(skill => (
                 <span key={skill} className="px-3 py-1.5 rounded-xl bg-slate-200/50 dark:bg-slate-800/50 text-[10px] uppercase tracking-wider font-mono font-medium text-slate-700 dark:text-slate-300">
                   {skill}
                 </span>
