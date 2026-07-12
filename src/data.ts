@@ -44,17 +44,6 @@ export const PROJECTS = [
     image: "https://images.unsplash.com/photo-1608223652631-5079a4da9001?auto=format&fit=crop&q=80&w=800&h=400",
     github: "https://github.com/RetroPick",
     website: "https://retropick.xyz/"
-  },
-  {
-    id: "4",
-    title: "Base Wallet Gateway",
-    role: "Web3 Developer",
-    description: "Base Wallet Gateway is a lightweight, responsive mini-dApp built on the Base L2 network utilizing Coinbase OnchainKit and Wagmi. The platform allows instant onboarding and custom dashboard metrics for Web3 users, mapping address, balances, and ENS profile data seamlessly.",
-    contribution: "Configured and customized Coinbase OnchainKit components (Avatar, Name, Address, EthBalance) to create a premium client login interface. Integrated Wagmi v2 client hooks and optimized Base RPC provider configs to ensure instant asset tracking. Standardized identity dropdowns and verified production builds under React 19.",
-    tech: ["Base L2", "OnchainKit", "Wagmi", "React", "TypeScript"],
-    image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?auto=format&fit=crop&q=80&w=800&h=400",
-    github: "https://github.com/thebegithub/my-onchainkit-app",
-    website: "https://my-onchainkit-app.vercel.app/"
   }
 ];
 
