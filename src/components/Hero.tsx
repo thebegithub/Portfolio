@@ -44,7 +44,7 @@ export function Hero() {
         className="w-full lg:w-[380px] shrink-0"
       >
         <div className="rounded-[2.5rem] border border-slate-200/50 dark:border-slate-800/50 bg-white/60 dark:bg-slate-900/40 backdrop-blur-xl p-2 shadow-2xl shadow-blue-900/5 dark:shadow-none">
-          <div className="relative mb-2 profile-glowing-frame">
+          <div className="relative mb-2">
             <div className="relative h-[380px] md:h-[420px] w-full rounded-[2rem] overflow-hidden">
               <img 
                 src={profilePic} 
@@ -122,7 +122,7 @@ export function Hero() {
           transition={{ delay: 0.3 }}
           className="flex flex-wrap gap-4"
         >
-          <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full btn-primary-gradient font-medium text-sm">
+          <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[color:var(--accent)] bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-[color:var(--accent)] font-medium text-sm hover:bg-[color:var(--accent)] hover:text-white transition-all duration-200">
             Explore Work <ArrowRight size={18} />
           </a>
           <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-slate-300 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
