@@ -5,19 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[number] | null>(null);
-  const [activeStatus, setActiveStatus] = useState('ALL');
-  const [activeCategory, setActiveCategory] = useState('ALL');
-
-  const statuses = ['ALL', 'SHIPPED', 'IN-PROGRESS', 'ARCHIVED'];
-
-  // Pull primary categories dynamically from project data (first tech tag)
-  const categories = ['ALL', ...Array.from(new Set(PROJECTS.map(p => p.tech[0].toUpperCase())))];
-
-  const filteredProjects = PROJECTS.filter(project => {
-    const matchesStatus = activeStatus === 'ALL' || (project.status && project.status.toUpperCase() === activeStatus);
-    const matchesCategory = activeCategory === 'ALL' || project.tech[0].toUpperCase() === activeCategory;
-    return matchesStatus && matchesCategory;
-  });
+  const filteredProjects = PROJECTS;
 
   return (
     <section id="projects" className="pt-16 pb-24 section-divider">
@@ -33,56 +21,13 @@ export function Projects() {
         </p>
       </div>
 
-      {/* Dynamic Two-Row Filter System */}
-      <div className="flex flex-col gap-3 mb-12 w-full">
-        {/* Row 1: Status Filters */}
-        <div className="flex flex-wrap gap-2.5">
-          {statuses.map((status) => {
-            const isActive = status === activeStatus;
-            return (
-              <button
-                key={status}
-                onClick={() => setActiveStatus(status)}
-                className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer ${
-                  isActive
-                    ? 'chip-active text-white shadow-lg'
-                    : 'bg-white/40 dark:bg-slate-900/20 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200/50 dark:border-slate-800/50'
-                }`}
-              >
-                {status}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Row 2: Category/Stack Filters */}
-        <div className="flex flex-wrap gap-2.5">
-          {categories.map((category) => {
-            const isActive = category === activeCategory;
-            return (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer ${
-                  isActive
-                    ? 'chip-active text-white shadow-lg'
-                    : 'bg-white/40 dark:bg-slate-900/20 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200/50 dark:border-slate-800/50'
-                }`}
-              >
-                {category}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       <motion.div 
         layout
         className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full"
       >
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, i) => {
-            const isFeatured = activeCategory === 'ALL' && i === 0;
+            const isFeatured = i === 0;
             return (
               <motion.div
                 layout
