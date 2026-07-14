@@ -40,9 +40,9 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-24 section-divider mt-12 mb-12">
-      <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+      <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
         <div className="flex-1">
-          <p className="text-[10px] font-mono tracking-[0.2em] text-slate-500 dark:text-slate-400 uppercase mb-6">
+          <p className="text-[10px] font-mono tracking-[0.2em] text-slate-500 dark:text-slate-400 uppercase mb-6 border border-slate-300 dark:border-slate-700 rounded-full px-3 py-1.5 inline-block">
             CONTACT / COLLABORATIONS
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-[1.1] mb-6 max-w-xl">
@@ -104,12 +104,12 @@ export function Contact() {
           </form>
         </div>
 
-        <div className="w-full lg:w-80 flex flex-col gap-4">
-          <SocialCard icon={<Github size={20} />} label="GITHUB" value="thebegithub" href="https://github.com/thebegithub" />
-          <SocialCard icon={<Twitter size={20} />} label="TWITTER" value="@Thebex_nncur" href="https://x.com/Thebex_nncur" />
-          <SocialCard icon={<Linkedin size={20} />} label="LINKEDIN" value="fatcurrahman-77268124a" href="https://www.linkedin.com/in/fatcurrahman-77268124a/" />
-          <SocialCard icon={<Instagram size={20} />} label="INSTAGRAM" value="@thebex.nncur_" href="https://www.instagram.com/thebex.nncur_/" />
-          <SocialCard icon={<Mail size={20} />} label="EMAIL" value="fatcurrahman125@gmail.com" href="mailto:fatcurrahman125@gmail.com" />
+        <div className="w-full lg:w-[460px] flex flex-col gap-5">
+          <SocialCard icon={<Github size={22} />} label="GITHUB" value="thebegithub" href="https://github.com/thebegithub" />
+          <SocialCard icon={<Twitter size={22} />} label="TWITTER" value="@Thebex_nncur" href="https://x.com/Thebex_nncur" />
+          <SocialCard icon={<Linkedin size={22} />} label="LINKEDIN" value="fatcurrahman-77268124a" href="https://www.linkedin.com/in/fatcurrahman-77268124a/" />
+          <SocialCard icon={<Instagram size={22} />} label="INSTAGRAM" value="@thebex.nncur_" href="https://www.instagram.com/thebex.nncur_/" />
+          <SocialCard icon={<Mail size={22} />} label="EMAIL" value="fatcurrahman125@gmail.com" href="mailto:fatcurrahman125@gmail.com" />
         </div>
       </div>
     </section>
@@ -123,16 +123,16 @@ function SocialCard({ icon, label, value, href }: { icon: React.ReactNode, label
       href={href} 
       target={isMail ? undefined : "_blank"} 
       rel={isMail ? undefined : "noopener noreferrer"} 
-      className="flex items-center gap-5 p-5 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/20 hover:bg-white/80 dark:hover:bg-slate-800/50 transition-colors group backdrop-blur-sm"
+      className="flex items-center gap-6 p-6 rounded-3xl border border-slate-200 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/20 hover:bg-white/80 dark:hover:bg-slate-800/50 transition-colors group backdrop-blur-sm"
     >
       <div className="text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
         {icon}
       </div>
       <div className="flex-1">
-        <p className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-500 uppercase mb-0.5">{label}</p>
-        <p className="text-sm font-medium text-slate-900 dark:text-slate-200">{value}</p>
+        <p className="text-xs font-mono tracking-widest text-slate-500 dark:text-slate-500 uppercase mb-0.5">{label}</p>
+        <p className="text-base font-semibold text-slate-900 dark:text-slate-200">{value}</p>
       </div>
-      <ArrowRight size={16} className="text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:-rotate-45 transition-all" />
+      <ArrowRight size={18} className="text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:-rotate-45 transition-all" />
     </a>
   );
 }

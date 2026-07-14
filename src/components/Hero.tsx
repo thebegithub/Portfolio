@@ -51,18 +51,11 @@ export function Hero() {
                 alt="Fatcurrahman" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
-              <div className="absolute bottom-5 left-5 right-5 text-white">
-                <h3 className="font-semibold text-lg mb-1.5">Building in public.</h3>
-                <p className="text-sm text-slate-200/80 leading-relaxed">
-                  Focused on Web3 research and community building.
-                </p>
-              </div>
             </div>
           </div>
           
           <div className="px-3.5 pb-4 pt-1.5">
-            <div className="flex flex-wrap gap-[6px]">
+            <div className="flex flex-wrap gap-[6px] justify-center">
               {['GTM', 'Web3', 'AI', 'Growth', 'Frontend', 'UI/UX'].map(skill => (
                 <span key={skill} className="px-2 py-1 rounded-lg bg-slate-200/50 dark:bg-slate-800/50 text-[10px] uppercase tracking-wider font-mono font-medium text-slate-700 dark:text-slate-300">
                   {skill}
@@ -113,7 +106,7 @@ export function Hero() {
           transition={{ delay: 0.2 }}
           className="text-xs md:text-sm font-mono font-semibold tracking-[0.1em] text-slate-500 dark:text-slate-400 uppercase mb-12 leading-relaxed"
         >
-          <span className="text-emerald-600 dark:text-emerald-400">INFORMATICS STUDENT</span> / AI INTEGRATOR / GTM ENGINEER / WEB3 BUILDER
+          <span className="text-emerald-600 dark:text-emerald-400">INFORMATICS STUDENT</span> / AI INTEGRATOR / GTM ENGINEER / WEB3 BUILDER + AI
         </motion.p>
         
         <motion.div 
@@ -122,7 +115,7 @@ export function Hero() {
           transition={{ delay: 0.3 }}
           className="flex flex-wrap gap-4"
         >
-          <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-slate-300 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-[color:var(--accent)] font-medium text-sm hover:bg-[color:var(--accent)] hover:text-white transition-all duration-200">
+          <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-slate-300 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
             Explore Work <ArrowRight size={18} />
           </a>
           <a href="#projects" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-slate-300 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
